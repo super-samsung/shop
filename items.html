@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Items</title>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="category">
+                    <select id="category"></select>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <ul id="items-list" style="display: none"></ul>
+            </div>
+        </div>
+    </div>
+    
+    
+    <script src="jquery.min.js"></script>
+    <script>
+    var categories = [
+        {
+            id: 1,
+            name: 'cat1'
+        },
+        {
+            id: 2,
+            name: 'cat2'
+        },
+        {
+            id: 3,
+            name: 'cat3'
+        }
+        ]
+        var items = [{
+                name: 'item 1',
+                price: 20,
+                category: "cat1"
+            },
+            {
+                name: 'item 2',
+                price: 10,
+                category: "cat2"
+            },
+            {
+                name: 'item 3',
+                price: 40,
+                category: "cat2"
+            }],
+            selectedCategory = '';
+        function getList(index) {
+            $('#items-list').append($('<li>').text(items[index].name)).append($('<span>').text(items[index].price));
+        }
+
+        function getCategory(index) {
+            $('#category').append($('<option>').text(categories[index].name));
+        }
+
+        function getCategoryItems() {
+            // items.filter(function()
+            //  )
+        }
+
+        for(var i = 0; i<categories.length; i++) {
+            getCategory(i);
+        }
+
+        for (let i = 0; i < items.length; i++) {
+            getList(i);
+        }
+        $('#category').on('change', function(e) {
+            $('#items-list li').remove();
+            selectedCategory = e.target.value;
+            var filteredItems = [];
+            debugger
+            filteredItems = items.filter(function(allItems){
+                return allItems.category === selectedCategory;
+            });
+            filteredItems.forEach(function(item) {
+                console.log('item: ', item);
+                $('#items-list').css('display', 'block').append($('<li>').text(item.name));
+            })
+        })
+    </script>
+</body>
+</html>
