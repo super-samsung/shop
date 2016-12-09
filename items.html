@@ -14,10 +14,20 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <ul id="items-list" style="display: none"></ul>
+                <ul id="items-list" style="display: none" class="list-group"></ul>
             </div>
         </div>
     </div>
+
+    <style>
+        .container{
+            padding: 25px 10px 0 10px;
+        }
+        #category{
+            height: 30px;
+            width: 250px;
+        }
+    </style>
     
     
     <script src="jquery.min.js"></script>
@@ -53,7 +63,7 @@
             }],
             selectedCategory = '';
         function getList(index) {
-            $('#items-list').append($('<li>').text(items[index].name)).append($('<span>').text(items[index].price));
+            $('#items-list').append($('<li class="list-group-item">').text(items[index].name));
         }
 
         function getCategory(index) {
@@ -82,7 +92,7 @@
             });
             filteredItems.forEach(function(item) {
                 console.log('item: ', item);
-                $('#items-list').css('display', 'block').append($('<li>').text(item.name));
+                $('#items-list').css('display', 'block').append($('<li class="list-group-item">').text(item.name + ' ' + item.price));
             })
         })
     </script>
